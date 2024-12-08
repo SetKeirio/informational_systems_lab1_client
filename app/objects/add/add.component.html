@@ -1,0 +1,139 @@
+<app-hat></app-hat>
+<div class="add-space-marine-container">
+  <h2>Добавить нового Space Marine</h2>
+  <form (ngSubmit)="addSpaceMarine()" #spaceMarineForm="ngForm">
+    <table>
+      <tr>
+        <th>Название</th>
+        <th>X</th>
+        <th>Y</th>
+        <th>ID Главы</th>
+        <th>Здоровье</th>
+        <th>Категория</th>
+        <th>Тип ближнего оружия</th>
+        <th>Тип оружия</th>
+      </tr>
+      <tr>
+        <td>
+          <input 
+            type="text" 
+            [(ngModel)]="newSpaceMarine.name" 
+            name="name" 
+            required 
+            #name="ngModel"
+          />
+          <div *ngIf="name.invalid" class="error">
+            Название не может быть пустым.
+          </div>
+        </td>
+        <td>
+          <input 
+            type="number" 
+            [(ngModel)]="newSpaceMarine.coordinatesId.x" 
+            name="x" 
+            required 
+            #x="ngModel"
+            value="0"
+          />
+          <div *ngIf="x.invalid" class="error">
+            Координата X должна быть целым числом.
+          </div>
+        </td>
+        <td>
+          <input 
+            type="number" 
+            [(ngModel)]="newSpaceMarine.coordinatesId.y" 
+            name="y" 
+            #y="ngModel"
+            value="0"
+          />
+          <div *ngIf="y.invalid" class="error">
+            Координата Y должна быть указана, если введена.
+          </div>
+        </td>
+        <td>
+          <select 
+            [(ngModel)]="newSpaceMarine.chapterId" 
+            name="chapterId" 
+            required 
+            #chapterId="ngModel"
+          >
+            <option value="" disabled selected>Выберите главу</option>
+            <option *ngFor="let chapter of chapters" [value]="chapter.id">{{ chapter.id }} - {{ chapter.name }}</option>
+          </select>
+          <div *ngIf="newSpaceMarine.chapterId <= 0" class="error">
+            Глава должна быть выбрана.
+          </div>
+        </td>
+        <td>
+          <input 
+            type="number" 
+            [(ngModel)]="newSpaceMarine.health" 
+            name="health" 
+            [min]="1"
+            #health="ngModel"
+          />
+          <div *ngIf="health.invalid" class="error">
+            Здоровье должно быть больше 0, если указано.
+          </div>
+        </td>
+        <td>
+          <select 
+            [(ngModel)]="newSpaceMarine.category" 
+            name="categoryId" 
+            #category="ngModel"
+          >
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          </select>
+          <div *ngIf="category.invalid" class="error">
+            Категория должна быть выбрана.
+          </div>
+        </td>
+        <td>
+          <select 
+            [(ngModel)]="newSpaceMarine.meleeWeapon" 
+            name="meleeWeaponId" 
+            required 
+            #meleeWeapon="ngModel"
+          >
+            <option *ngFor="let meleeWeapon of meleeWeapons" [value]="meleeWeapon">{{ meleeWeapon }}</option>
+          </select>
+          <div *ngIf="meleeWeapon.invalid" class="error">
+            Тип ближнего оружия должен быть выбран.
+          </div>
+        </td>
+        <td>
+          <select 
+            [(ngModel)]="newSpaceMarine.weaponType" 
+            name="weaponTypeId" 
+            required 
+            #weaponType="ngModel"
+          >
+            <option *ngFor="let weapon of weaponTypes" [value]="weapon">{{ weapon }}</option>
+          </select>
+          <div *ngIf="weaponType.invalid" class="error">
+            Тип оружия должен быть выбран.
+          </div>
+        </td>
+      </tr>
+    </table>
+    <button 
+      type="submit" 
+      class="submit-button" 
+    >
+      Отправить
+    </button>
+  </form>
+
+  <!-- Сообщение об ошибке или успехе -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+</div>
+
+<app-chapter></app-chapter>
+<app-chapter-table></app-chapter-table>
+<app-boots></app-boots>

@@ -1,0 +1,83 @@
+/* Основные стили для контейнера */
+.space-marine-menu {
+    width: 100%;  /* Ограничиваем ширину */
+    height: 30vh;      /* Ограничиваем высоту до 50% от экрана */
+    margin: 15px auto; /* Центрируем по горизонтали */
+    padding: 15px;     /* Уменьшаем отступы */
+    border: 1px solid #a04e9b; /* Светло-фиолетовая рамка */
+    border-radius: 8px;
+    background-color: #f5f0fa; /* Светлый фон */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;  /* Позволяем прокрутку, если содержимое превышает высоту */
+}
+
+/* Заголовок */
+.space-marine-menu h2 {
+    text-align: center;
+    color: #6a2c91; /* Темно-фиолетовый цвет */
+    font-size: 1.3em; /* Уменьшаем размер заголовка */
+}
+
+/* Стили для формы */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Стили для полей ввода */
+.input-container {
+    display: flex;
+    align-items: center; /* Выравниваем элементы по вертикали */
+    margin: 5px 0;      /* Уменьшаем отступы между полями */
+}
+
+input[type="number"],
+input[type="text"] {
+    padding: 6px;       /* Уменьшаем отступы */
+    margin-right: 5px;  /* Отступ между полем и кнопкой */
+    border: 1px solid #a04e9b; /* Светло-фиолетовая рамка */
+    border-radius: 4px;
+    font-size: 12px;    /* Уменьшаем размер шрифта */
+    flex-grow: 1;       /* Поле занимает оставшееся пространство */
+}
+
+/* Стили для кнопок */
+button {
+    padding: 6px;       /* Уменьшаем отступы */
+    border: none;
+    border-radius: 4px;
+    background-color: #7b5caa; /* Фиолетовый фон кнопки */
+    color: white;
+    font-size: 12px;    /* Уменьшаем размер шрифта */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #5a3e78; /* Темнее на ховер */
+}
+
+/* Стили для сообщений об ошибках */
+.error-message {
+    color: red;
+    font-size: 10px;    /* Уменьшаем размер шрифта */
+    margin-top: 5px;    /* Уменьшаем отступы */
+}
+
+/* Стили для таблицы (если будет использоваться) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;  /* Уменьшаем отступы */
+}
+
+table th, table td {
+    border: 1px solid #a04e9b; /* Светло-фиолетовая рамка */
+    padding: 4px;      /* Уменьшаем отступы */
+    text-align: left;
+    font-size: 10px;   /* Уменьшаем размер шрифта */
+}
+
+table th {
+    background-color: #e6d7ef; /* Светло-фиолетовый фон заголовков */
+}

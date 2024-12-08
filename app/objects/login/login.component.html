@@ -1,0 +1,45 @@
+<app-hat></app-hat>
+
+<div class="login-container">
+  <h2>Вход или Регистрация</h2>
+  <form #authForm="ngForm">
+      <div class="form-group">
+          <label for="username">Имя пользователя</label>
+          <input
+              type="text"
+              id="username"
+              required
+              [(ngModel)]="username"
+              name="username"
+              #usernameInput="ngModel"
+          />
+          <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)" class="error">
+              Имя пользователя обязательно
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="password">Пароль</label>
+          <input
+              type="password"
+              id="password"
+              required
+              [(ngModel)]="password"
+              name="password"
+              #passwordInput="ngModel"
+          />
+          <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)" class="error">
+              Пароль обязателен
+          </div>
+      </div>
+
+      <button type="button" (click)="onLogin()" [disabled]="authForm.invalid">Войти</button>
+      <button type="button" (click)="onRegister()" [disabled]="authForm.invalid">Зарегистрироваться</button>
+
+      <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+      </div>
+  </form>
+</div>
+
+<app-boots></app-boots>

@@ -1,0 +1,62 @@
+.add-space-marine-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+  color: #6a1b9a; /* Фиолетовый цвет заголовка */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #6a1b9a; /* Фиолетовый цвет заголовка таблицы */
+  color: white;
+}
+
+input[type="text"], input[type="number"], select {
+  width: 90%;
+  padding: 8px;
+  margin: 4px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #6a1b9a; /* Фиолетовая кнопка */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #4a0072; /* Более темный фиолетовый при наведении */
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.form-errors {
+  color: red;
+  font-weight: bold;
+  margin-top: 20px;
+}

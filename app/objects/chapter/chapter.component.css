@@ -1,0 +1,82 @@
+/* Контейнер для создания Chapter */
+.space-marine-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Светлый фон для контейнера */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок формы */
+h2 {
+  text-align: center;
+  color: #6a1b9a; /* Фиолетовый цвет заголовка */
+  margin-bottom: 20px;
+}
+
+/* Стилизация таблицы */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #6a1b9a; /* Фиолетовый фон для заголовков */
+  color: white;
+  font-size: 16px;
+}
+
+td input,
+td select {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Ошибки для обязательных полей */
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Кнопка отправки */
+button.btn {
+  padding: 10px 20px;
+  background-color: #6a1b9a; /* Фиолетовая кнопка */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* Эффект при наведении на кнопку */
+button.btn:hover {
+  background-color: #4a0072; /* Темный фиолетовый при наведении */
+}
+
+/* Отключенная кнопка */
+button.btn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* Сообщения об ошибке формы */
+.error-message p {
+  margin: 0;
+  color: #d32f2f;
+}

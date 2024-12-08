@@ -1,0 +1,38 @@
+<div class="chapter-container">
+  <h2>Список Глав</h2>
+
+  <!-- Фильтрация по имени -->
+  <div class="filters">
+    <label for="name-filter">Глава:</label>
+    <select id="name-filter" (change)="onFilterChange('name', $event)">
+      <option value="">Все</option>
+      <option *ngFor="let chapter of uniqueChapters" [value]="chapter">{{ chapter }}</option>
+    </select>
+  </div>
+
+  <!-- Таблица -->
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sort('id')">ID</th>
+        <th (click)="sort('name')">Название</th>
+        <th (click)="sort('marinesCount')">Кол-во космодесантников</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let chapter of filteredChapters | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+        <td>{{ chapter.id }}</td>
+        <td>{{ chapter.name }}</td>
+        <td>{{ chapter.marinesCount }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Сообщение об ошибке -->
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Пагинация -->
+  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+</div>

@@ -1,0 +1,22 @@
+<header>
+  <div class="user-info">
+    <span>Текущий пользователь: {{ currentUser }}</span>
+    <div class="user-actions">
+      <button (click)="logout()">Выйти</button>
+      <button (click)="requestAdminRights()">Запросить права администратора</button>
+      
+      <!-- Сообщение о запросе прав администратора -->
+      <div *ngIf="showMessage" class="request-message">
+        {{ requestMessage }}
+      </div>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li><a routerLink="/create">Создать объект</a></li>
+      <li><a routerLink="/main">Список объектов</a></li>
+      <li><a routerLink="/admin">Администрирование</a></li>
+      <li><a routerLink="/modifications">Модификации</a></li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,26 @@
+<app-hat></app-hat>
+<div class="admin-panel-container">
+    <h2>Запросы на права администратора</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Имя пользователя</th>
+          <th>Статус</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of adminRequestsTable | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+          <td>{{ request.username }}</td>
+          <td>{{ request.status }}</td>
+          <td>  
+            <button (click)="approveRequest(request.id)">Одобрить</button>
+            <button (click)="rejectRequest(request.id)">Отклонить</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+<app-boots></app-boots>

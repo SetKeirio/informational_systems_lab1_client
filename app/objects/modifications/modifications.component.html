@@ -1,0 +1,54 @@
+<app-hat></app-hat>
+<div class="space-marine-menu">
+    <h2>Управление Десантниками</h2>
+    <form (ngSubmit)="calculateAverageHealth()">
+        <div class="input-container">
+            <span>Рассчитать среднее значение health:</span>
+            <button type="submit">Рассчитать</button>
+            <span *ngIf="answerHealthValue >= 0">Среднее здоровье: {{ answerHealthValue }}</span>
+        </div>
+    </form>
+    <form (ngSubmit)="getCategoryCount()">
+        <div class="input-container">
+            <span>Вернуть количество объектов, значение поля category которых больше заданного.</span>
+            <select [(ngModel)]="selectedCategory" name="selectedCategory" required>
+                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+            <button type="submit">Посчитать</button>
+            <span *ngIf="answerCategoryCount >= 0">Количество: {{ answerCategoryCount }}</span>
+        </div>
+    </form>
+    <form (ngSubmit)="getHealthFilteredSpaceMarines()">
+        <div class="input-container">
+            <span>Вернуть массив объектов, значение поля health которых меньше заданного.</span>
+            <input type="number" placeholder="Введите значение health" [(ngModel)]="healthThreshold" name="healthThreshold" required>
+            <button type="submit">Получить объекты</button>
+        </div>
+    </form>
+    <form (ngSubmit)="demoteSpaceMarine()">
+        <div class="input-container">
+            <span>Отчислить десантника из указанного ордена.</span>
+            <select [(ngModel)]="nowCategory2" (change)="loadSpaceMarinesByCategory()" name="nowCategory2" required>
+                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+            <select [(ngModel)]="selectedSpaceMarineId" name="selectedSpaceMarineId" required>
+                <option *ngFor="let marine of filteredSpaceMarines" [value]="marine.id">{{ marine.id }}, {{ marine.name }}</option>
+            </select>
+            <button type="submit">Распустить орден</button>
+            <span *ngIf="answerAstartesCategory1 !== ''">{{ answerAstartesCategory1 }}</span>
+        </div>
+    </form>
+    <form (ngSubmit)="dissolveChapter()">
+        <div class="input-container">
+            <span>Распустить указанный орден космодесанта.</span>
+            <select [(ngModel)]="nowCategory" name="nowCategory" required>
+                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+            <button type="submit">Распустить орден</button>
+            <span *ngIf="answerAstartesCategory2 !== ''">{{ answerAstartesCategory2 }}</span>
+        </div>
+    </form>
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+</div>
+<app-space-marine-list></app-space-marine-list>
+<app-boots></app-boots>

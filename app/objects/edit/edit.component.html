@@ -1,0 +1,111 @@
+<app-hat></app-hat>
+<div class="edit-space-marine-container">
+    <h2>Редактировать Space Marine</h2>
+    <form (ngSubmit)="updateSpaceMarine()" #spaceMarineForm="ngForm">
+      <table>
+        <tr>
+          <th>Название</th>
+          <th>X</th>
+          <th>Y</th>
+          <th>ID Главы</th>
+          <th>Здоровье</th>
+          <th>Категория</th>
+          <th>Тип ближнего оружия</th>
+          <th>Тип оружия</th>
+        </tr>
+        <tr>
+          <td>
+            <input 
+              type="text" 
+              [(ngModel)]="spaceMarine.name" 
+              name="name" 
+              required 
+              #name="ngModel"
+            />
+          </td>
+          <td>
+            <input 
+              type="number" 
+              [(ngModel)]="spaceMarine.coordinatesId.x" 
+              name="x" 
+              required 
+              #x="ngModel"
+            />
+          </td>
+          <td>
+            <input 
+              type="number" 
+              [(ngModel)]="spaceMarine.coordinatesId.y" 
+              name="y" 
+              #y="ngModel"
+            />
+          </td>
+          <td>
+            <select 
+              [(ngModel)]="spaceMarine.chapterId" 
+              name="chapterId" 
+              required 
+              #chapterId="ngModel"
+            >
+              <option *ngFor="let chapter of chapters" [value]="chapter.id">{{ chapter.id }} - {{ chapter.name }}</option>
+            </select>
+          </td>
+          <td>
+            <input 
+              type="number" 
+              [(ngModel)]="spaceMarine.health" 
+              name="health" 
+              [min]="1"
+              #health="ngModel"
+            />
+          </td>
+          <td>
+            <select 
+              [(ngModel)]="spaceMarine.category" 
+              name="categoryId" 
+              #category="ngModel"
+            >
+              <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+          </td>
+          <td>
+            <select 
+              [(ngModel)]="spaceMarine.meleeWeapon" 
+              name="meleeWeaponId" 
+              required 
+              #meleeWeapon="ngModel"
+            >
+              <option *ngFor="let meleeWeapon of meleeWeapons" [value]="meleeWeapon">{{ meleeWeapon }}</option>
+            </select>
+          </td>
+          <td>
+            <select 
+              [(ngModel)]="spaceMarine.weaponType" 
+              name="weaponTypeId" 
+              required 
+              #weaponType="ngModel"
+            >
+              <option *ngFor="let weapon of weaponTypes" [value]="weapon">{{ weapon }}</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      <button 
+        type="submit" 
+        class="submit-button" 
+        [disabled]="spaceMarineForm.invalid"
+      >
+        Сохранить изменения
+      </button>
+    </form>
+  
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+  </div>
+
+<app-chapter-table></app-chapter-table>
+<app-boots></app-boots>

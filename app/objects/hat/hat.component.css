@@ -1,0 +1,90 @@
+header {
+  background-color: #6a0dad; /* Фиолетовый фон */
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Arial', sans-serif; /* Шрифт */
+}
+
+.user-info {
+  color: #f0e7ff; /* Светлый цвет текста */
+  display: flex;
+  align-items: center; /* Центрирование по вертикали */
+}
+
+.user-info span {
+  margin-right: 15px; /* Отступ между текстом и кнопками */
+}
+
+.user-actions {
+  display: flex; /* В одну строку для кнопок */
+  gap: 10px; /* Отступ между кнопками */
+  position: relative; /* Для позиционирования сообщения */
+}
+
+button {
+  background-color: #8a2be2; /* Цвет кнопок */
+  color: #fff; /* Цвет текста кнопок */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #7a1e99; /* Цвет кнопок при наведении */
+}
+
+.request-message {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  background-color: #4caf50; /* Зеленый цвет для успешного запроса */
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-left: 10px; /* Отступ от кнопки */
+  font-size: 14px;
+  animation: fadeInOut 5s forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+      opacity: 0;
+  }
+  10% {
+      opacity: 1;
+  }
+  90% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+
+nav {
+  display: flex;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 15px; /* Отступ между пунктами меню */
+}
+
+nav ul li a {
+  color: #f0e7ff; /* Цвет текста меню */
+  text-decoration: none;
+  padding: 8px 12px; /* Отступы внутри ссылок */
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Подсветка ссылки при наведении */
+}

@@ -1,0 +1,42 @@
+<div class="space-marine-container">
+    <h2>Создание Chapter</h2>
+  
+    <!-- Форма для создания Chapter -->
+    <form [formGroup]="chapterForm" (ngSubmit)="onSubmit()">
+      <table>
+        <tr>
+          <th>Название</th>
+          <th>Количество Космодесантников</th>
+        </tr>
+        <tr>
+          <td>
+            <input id="name" formControlName="name" type="text" class="form-control" placeholder="Введите название" />
+          </td>
+          <td>
+            <input id="marinesCount" formControlName="marinesCount" type="number" class="form-control" placeholder="Введите количество" />
+          </td>
+        </tr>
+      </table>
+  
+      <!-- Сообщения об ошибке -->
+      <div *ngIf="name?.touched && name?.invalid" class="error-message">
+        <small *ngIf="name?.hasError('required')">У Chapter должно быть непустое имя</small>
+      </div>
+  
+      <div *ngIf="marinesCount?.touched && marinesCount?.invalid" class="error-message">
+        <small *ngIf="marinesCount?.hasError('required')">Количество космодесантников должно быть больше 0, но не больше 1000</small>
+        <small *ngIf="marinesCount?.hasError('min')">Количество должно быть больше 0</small>
+        <small *ngIf="marinesCount?.hasError('max')">Максимальное количество 1000</small>
+      </div>
+  
+      <!-- Сообщение об ошибке -->
+      <div *ngIf="showErrorMessage" class="error-message">
+        <p>{{ showErrorMessage }}</p>
+      </div>
+  
+      <!-- Кнопка отправки -->
+      <button type="submit" [disabled]="isSubmitDisabled()" class="btn btn-primary">
+        Создать Chapter
+      </button>
+    </form>
+  </div>

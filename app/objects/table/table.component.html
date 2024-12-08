@@ -1,0 +1,107 @@
+<div class="space-marine-container">
+  <h2>Список Космодесантников</h2>
+  <div class="filters">
+    <label for="name-filter">Имя:</label>
+    <select id="name-filter" (change)="onFilterChange('name', $event)">
+        <option value="">Все</option>
+        <option *ngFor="let name of uniqueNames" [value]="name">{{ name }}</option>
+    </select>
+
+    <label for="chapter-filter">Глава:</label>
+    <select id="chapter-filter" (change)="onFilterChange('chapter', $event)">
+        <option value="">Все</option>
+        <option *ngFor="let chapter of uniqueChapters" [value]="chapter">{{ chapter }}</option>
+    </select>
+
+    <label for="creationDate-filter">Дата создания:</label>
+    <select id="creationDate-filter" (change)="onFilterChange('creationDate', $event)">
+        <option value="">Все</option>
+        <option *ngFor="let date of uniqueCreationDates" [value]="date">{{ date }}</option>
+    </select>
+
+    <label for="chapter-filter">Глава:</label>
+    <select id="chapter-filter" (change)="onFilterChange('chapter', $event)">
+        <option value="">Все</option>
+        <option *ngFor="let chapter of uniqueChapters" [value]="chapter">{{ chapter }}</option>
+    </select>
+
+    <label for="health-filter">Здоровье:</label>
+    <select id="health-filter" (change)="onFilterChange('health', $event)">
+        <option value="">Все</option>
+        <option *ngFor="let health of uniqueHealths" [value]="health">{{ health }}</option>
+    </select>
+
+    <label for="category-filter">Категория:</label>
+    <select id="category-filter" (change)="onFilterChange('category', $event)">
+        <option value="">Все</option>
+        <option *ngFor="let category of uniqueCategories" [value]="category">{{ category }}</option>
+    </select>
+
+    <label for="weaponType-filter">Тип оружия:</label>
+    <select id="weaponType-filter" (change)="onFilterChange('weaponType', $event)">
+        <option value="">Все</option>
+        <option *ngFor="let weapon of uniqueWeaponTypes" [value]="weapon">{{ weapon }}</option>
+    </select>
+
+    <label for="meleeWeapon-filter">Ближнее оружие:</label>
+    <select id="meleeWeapon-filter" (change)="onFilterChange('meleeWeapon', $event)">
+        <option value="">Все</option>
+        <option *ngFor="let melee of uniqueMeleeWeapons" [value]="melee">{{ melee }}</option>
+    </select>
+
+    <label for="username-filter">Имя пользователя:</label>
+    <select id="username-filter" (change)="onFilterChange('username', $event)">
+        <option value="">Все</option>
+        <option *ngFor="let user of uniqueUsernames" [value]="user">{{ user }}</option>
+    </select>
+    
+</div>
+
+  <table>
+      <thead>
+          <tr>
+              <th (click)="sort('id')">ID</th>
+              <th (click)="sort('name')">Имя</th>
+              <th (click)="sort('coordinates')">Координаты</th>
+              <th (click)="sort('creationDate')">Дата создания</th>
+              <th (click)="sort('chapter')">Глава</th>
+              <th (click)="sort('health')">Здоровье</th>
+              <th (click)="sort('category')">Категория</th>
+              <th (click)="sort('weaponType')">Тип оружия</th>
+              <th (click)="sort('meleeWeapon')">Ближнее оружие</th>
+              <th (click)="sort('username')">Имя пользователя</th>
+              <th>Действия</th> <!-- Новая колонка для кнопок -->
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let marine of filteredSpaceMarines | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+              <td>{{ marine.id }}</td>
+              <td>{{ marine.name }}</td>
+              <td>{{ marine.coordinates }}</td>
+              <td>{{ marine.creationDate }}</td>
+              <td>{{ marine.chapter }}</td>
+              <td>{{ marine.health }}</td>
+              <td>{{ marine.category }}</td>
+              <td>{{ marine.weaponType }}</td>
+              <td>{{ marine.meleeWeapon }}</td>
+              <td>{{ marine.username }}</td>
+              <td>
+                <!-- Кнопка удаления -->
+                <button 
+                    (click)="navigateToEdit(marine.id)">Изменить</button>
+                <button (click)="deleteSpaceMarine(marine.id)">Удалить</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="notYours" class="error-message">
+    <p>{{ "Вы не можете редактировать этот объект" }}</p>
+  </div>
+
+  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
