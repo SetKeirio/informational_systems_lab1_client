@@ -8,27 +8,19 @@ import { FileService } from './file.algorithm';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthAlgorithm implements OnInit{
-  private url = ''
+export class AuthAlgorithm{
+  private url = this.data.http + this.data.host + this.data.port + "/login";
 
-  constructor(private http: HttpClient, private data: Data, private file: FileService) {}
-
-  ngOnInit(): void {
-    this.file.readFile('assets/server.txt').subscribe(
-      data => {
-        this.url = data + '/login';
-      },
-      error => {
-        console.error('Error reading file:', error);
-      }
-    );
+  constructor(private http: HttpClient, private data: Data) {
   }
 
   login(username: string, password: string): Observable<any> {
+    console.log(this.url);
     return this.http.post(`${this.url}/login`, { username, password });
   }
 
   register(username: string, password: string): Observable<any> {
+    console.log(this.url);
     return this.http.post(`${this.url}/register`, { username, password });
   }
 

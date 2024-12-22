@@ -14,12 +14,13 @@ import { MeleeWeapon } from '../entities/MeleeWeapon';
 import { AstartesCategory } from '../entities/AstartesCategory';
 import { Data } from './data';
 import { FileService } from './file.algorithm';
+import { Import } from '../entities/Import';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DatabaseService implements OnInit {
-  private serverUrl = ''
+export class DatabaseService {
+  private serverUrl = this.data.http + this.data.host + this.data.port;
   private url = this.serverUrl + '/spacemarines'; // ваш API
   private userUrl = this.serverUrl + '/users';
   private adminUrl = this.serverUrl + '/adminapprovals';
@@ -29,18 +30,7 @@ export class DatabaseService implements OnInit {
   private chapterUrl = this.serverUrl + '/chapters'; // API для chapters
   private coordinatesUrl = this.serverUrl + '/coordinates'; // API для chapters
 
-  constructor(private http: HttpClient, private data: Data, private file: FileService) {}
-
-  ngOnInit(): void {
-    this.file.readFile('assets/server.txt').subscribe(
-      data => {
-        this.serverUrl = data;
-      },
-      error => {
-        console.error('Error reading file:', error);
-      }
-    );
-  }
+  constructor(private http: HttpClient, private data: Data) {}
 
   getTokenHeader(): HttpHeaders{
     const token = localStorage.getItem('authToken');
@@ -106,6 +96,16 @@ export class DatabaseService implements OnInit {
 
   getCategories() {
     return this.http.get<String[]>(`${this.categoryUrl}/names`); // Пример API для получения категорий
+  }
+  
+  uploadFile(formData: FormData): Observable<any> {
+    const headers = this.getTokenHeader();
+    return this.http.post<any[]>(`${this.serverUrl}/importhistory/add`, formData, { headers });
+  }
+
+  getImportHistory(): Observable<Import[]> {
+    const headers = this.getTokenHeader();
+    return this.http.get<Import[]>(`${this.serverUrl}/importhistory/table`, { headers });
   }
 
   getCategoryIdByName(id: string) {

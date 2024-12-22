@@ -7,6 +7,8 @@ import { CanActivate } from '@angular/router';
   providedIn: 'root'
 })
 export class Data {
-  public port = '29730';
+  public http = "http://"
+  public host = "localhost:"
+  public port = "8080";
 
 }

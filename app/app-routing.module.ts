@@ -12,6 +12,7 @@ import { AuthGuard } from './algorithms/redirect.algorithm';
 import { AddSpaceMarineComponent } from './objects/add/add.component';
 import { EditSpaceMarineComponent } from './objects/edit/edit.component';
 import { EditGuard } from './algorithms/edit.redirect.algorithm';
+import { ImportComponent } from './objects/import/import.component';
 //import {MainComponent} from "./objects/main/main.component";
 
 const path: Routes = [{path: '', redirectTo: "/authentify", pathMatch: "full"},
@@ -19,6 +20,7 @@ const path: Routes = [{path: '', redirectTo: "/authentify", pathMatch: "full"},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
   {path: 'main', component: MainComponent, canActivate: [AuthGuard]},
   {path: 'modifications', component: ModificationComponent, canActivate: [AuthGuard]},
+  {path: 'import', component: ImportComponent, canActivate: [AuthGuard]},
   {path: 'create', component: AddSpaceMarineComponent, canActivate: [AuthGuard]},
   {path: 'edit-space-marine/:id', component: EditSpaceMarineComponent, canActivate: [EditGuard]},
   {path: '**', component: LoginComponent}];

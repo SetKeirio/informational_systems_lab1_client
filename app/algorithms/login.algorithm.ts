@@ -9,22 +9,12 @@ import { FileService } from './file.algorithm';
   providedIn: 'root',
 })
 
-export class LoginAlgorithm implements CanActivate, OnInit {
+export class LoginAlgorithm implements CanActivate {
 
-  private apiUrl = '';
+  private apiUrl = this.data.http + this.data.host + this.data.port + "/login";
 
-  constructor(private router: Router, private http: HttpClient, private data: Data, private file: FileService) {}
+  constructor(private router: Router, private http: HttpClient, private data: Data) {}
 
-  ngOnInit(): void {
-    this.file.readFile('assets/server.txt').subscribe(
-      data => {
-        this.apiUrl = data + '/login';
-      },
-      error => {
-        console.error('Error reading file:', error);
-      }
-    );
-  }
 
   canActivate(): boolean {
     const token = localStorage.getItem('authToken');

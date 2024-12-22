@@ -1,0 +1,41 @@
+<app-hat></app-hat>
+<div class="import-container">
+  
+  <!-- Форма выбора файла с поддержкой drag-and-drop -->
+  <div
+    class="file-drop-area"
+    [ngClass]="{'dragover': isDragOver}"
+    (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave()">
+    <label for="file-input" class="file-label"></label>
+    <input type="file" id="file-input" (change)="onFileSelected($event)" />
+  </div>
+  
+  <button class="upload-button" (click)="onUpload()">Отправить</button>
+  <p *ngIf="uploadStatus" class="upload-status">{{ uploadStatus }}</p>
+  <!-- История импорта -->
+  <h3>История импорта</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Пользователь</th>
+        <th>Статус</th>
+        <th>Добавленные объекты</th>
+        <th>Объяснение</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let import of importHistory | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+        <td>{{ import.id }}</td>
+        <td>{{ import.username }}</td>
+        <td>{{ import.status }}</td>
+        <td>{{ import.count || '-' }}</td>
+        <td>{{ import.description || '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+</div>
+<app-boots></app-boots>

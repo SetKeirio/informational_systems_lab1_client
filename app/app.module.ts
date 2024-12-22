@@ -20,6 +20,11 @@ import { JwtInterceptor } from './algorithms/jwt.algorithm';
 import { ChapterComponent } from './objects/chapter/chapter.component';
 import { ChapterTableComponent } from './objects/chapters/chapters.component';
 import { EditSpaceMarineComponent } from './objects/edit/edit.component';
+import { ImportComponent } from './objects/import/import.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import { EditSpaceMarineComponent } from './objects/edit/edit.component';
     AdminComponent,
     ChapterComponent,
     ChapterTableComponent,
-    EditSpaceMarineComponent
+    EditSpaceMarineComponent,
+    ImportComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,11 @@ import { EditSpaceMarineComponent } from './objects/edit/edit.component';
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthAlgorithm, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
