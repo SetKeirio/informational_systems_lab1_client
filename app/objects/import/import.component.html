@@ -24,6 +24,7 @@
         <th>Статус</th>
         <th>Добавленные объекты</th>
         <th>Объяснение</th>
+        <th>Скачать</th>
       </tr>
     </thead>
     <tbody>
@@ -33,6 +34,9 @@
         <td>{{ import.status }}</td>
         <td>{{ import.count || '-' }}</td>
         <td>{{ import.description || '-' }}</td>
+        <td>
+          <button *ngIf="import.count >= 1" (click)="downloadFile(import.id)" class="download-button">Скачать</button>
+        </td>
       </tr>
     </tbody>
   </table>

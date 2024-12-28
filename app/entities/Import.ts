@@ -4,4 +4,5 @@ export interface Import {
     status: string;
     count: number;
     description: string;
+    fileName: string;
   }

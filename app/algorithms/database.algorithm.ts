@@ -108,6 +108,11 @@ export class DatabaseService {
     return this.http.get<Import[]>(`${this.serverUrl}/importhistory/table`, { headers });
   }
 
+  downloadFile(id: number): Observable<ArrayBuffer> {
+    const headers = this.getTokenHeader();
+    return this.http.get(`${this.serverUrl}/importhistory/download/${id}`, { headers, responseType: 'arraybuffer' });
+  }
+
   getCategoryIdByName(id: string) {
     return this.http.get<number>(`${this.categoryUrl}/name/${id}`); // Пример API для получения категорий
   }
