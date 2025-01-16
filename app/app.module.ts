@@ -25,6 +25,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CharactersComponent } from './objects/characters/characters.component';
+import { TopComponent } from './objects/top/top.component';
+import { BoottomComponent } from './objects/bottom/bottom.component';
+import { ComputeComponent } from './objects/compute/compute.component';
+import { UpdatesComponent } from './objects/updates/updates.component';
+import { BuildsComponent } from './objects/builds/builds.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +46,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ChapterComponent,
     ChapterTableComponent,
     EditSpaceMarineComponent,
-    ImportComponent
+    ImportComponent,
+    CharactersComponent,
+    TopComponent,
+    BoottomComponent,
+    ComputeComponent,
+    UpdatesComponent,
+    BuildsComponent
   ],
   imports: [
     BrowserModule,

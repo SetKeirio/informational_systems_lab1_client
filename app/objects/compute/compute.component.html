@@ -1,0 +1,158 @@
+<app-top></app-top>
+<div class="space-marine-container">
+    <!-- Таблица статистики с добавленной колонкой "Статистика" -->
+    <div class="stats-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Статистика</th> <!-- Новая колонка -->
+                    <th>Radiant</th>
+                    <th>Dire</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Matchup Winrate: {{a[8]}} vs {{a[9]}}</td>
+                    <td>{{a[0]}}</td>
+                    <td>{{a[1]}}</td>
+                </tr>
+                <tr>
+                    <td>Synergy:</td>
+                    <td>{{a[2]}}</td>
+                    <td>{{a[3]}}</td>
+                </tr>
+                <tr>
+                    <td>Synergy (normalized):</td>
+                    <td>{{a[4]}}</td>
+                    <td>{{a[5]}}</td>
+                </tr>
+                <tr>
+                    <td>Winrate (inaccurate):</td>
+                    <td>{{a[6]}}</td>
+                    <td>{{a[7]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+    <!-- Таблица с командами Radiant и Dire -->
+    <table>
+        <thead>
+            <tr>
+                <th>Команда</th>
+                <th>Герои</th>
+                <th>Позиции</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Radiant -->
+            <tr>
+                <td><strong>Radiant</strong></td>
+                <td>
+                    <div class="hero-selection">
+                        <select [(ngModel)]="radiantHeroSelections[0]" (change)="onHeroSelect(radiantHeroSelections[0], 'radiant', 0)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                        <select [(ngModel)]="radiantHeroSelections[1]" (change)="onHeroSelect(radiantHeroSelections[1], 'radiant', 1)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                        <select [(ngModel)]="radiantHeroSelections[2]" (change)="onHeroSelect(radiantHeroSelections[2], 'radiant', 2)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                        <select [(ngModel)]="radiantHeroSelections[3]" (change)="onHeroSelect(radiantHeroSelections[3], 'radiant', 3)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                        <select [(ngModel)]="radiantHeroSelections[4]" (change)="onHeroSelect(radiantHeroSelections[4], 'radiant', 4)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="role-selection">
+                        <select [(ngModel)]="radiantPositions[0]" (change)="onPositionSelect(radiantPositions[0], 'radiant', 0)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                        <select [(ngModel)]="radiantPositions[1]" (change)="onPositionSelect(radiantPositions[1], 'radiant', 1)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                        <select [(ngModel)]="radiantPositions[2]" (change)="onPositionSelect(radiantPositions[2], 'radiant', 2)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                        <select [(ngModel)]="radiantPositions[3]" (change)="onPositionSelect(radiantPositions[3], 'radiant', 3)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                        <select [(ngModel)]="radiantPositions[4]" (change)="onPositionSelect(radiantPositions[4], 'radiant', 4)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <!-- Dire -->
+            <tr>
+                <td><strong>Dire</strong></td>
+                <td>
+                    <div class="hero-selection">
+                        <select [(ngModel)]="direHeroSelections[0]" (change)="onHeroSelect(direHeroSelections[0], 'dire', 0)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                        <select [(ngModel)]="direHeroSelections[1]" (change)="onHeroSelect(direHeroSelections[1], 'dire', 1)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                        <select [(ngModel)]="direHeroSelections[2]" (change)="onHeroSelect(direHeroSelections[2], 'dire', 2)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                        <select [(ngModel)]="direHeroSelections[3]" (change)="onHeroSelect(direHeroSelections[3], 'dire', 3)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                        <select [(ngModel)]="direHeroSelections[4]" (change)="onHeroSelect(direHeroSelections[4], 'dire', 4)">
+                            <option *ngFor="let hero of heroNames" [value]="hero.id">{{ hero.name }}</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="role-selection">
+                        <select [(ngModel)]="direPositions[0]" (change)="onPositionSelect(direPositions[0], 'dire', 0)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                        <select [(ngModel)]="direPositions[1]" (change)="onPositionSelect(direPositions[1], 'dire', 1)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                        <select [(ngModel)]="direPositions[2]" (change)="onPositionSelect(direPositions[2], 'dire', 2)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                        <select [(ngModel)]="direPositions[3]" (change)="onPositionSelect(direPositions[3], 'dire', 3)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                        <select [(ngModel)]="direPositions[4]" (change)="onPositionSelect(direPositions[4], 'dire', 4)">
+                            <option *ngFor="let position of positionStrings" [value]="position.value">{{ position.label }}</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  
+    <!-- Кнопки -->
+    <div class="buttons">
+        <button (click)="calculatePositionsForTeam(1)">Распределить роли для Radiant</button>
+        <button class="calculate-button" (click)="sendData()">Рассчитать статистики</button>
+        <button (click)="calculatePositionsForTeam(2)">Распределить роли для Dire</button>
+    </div>
+  
+    <!-- Таблица с лучшими комбинациями -->
+    <table class="best-combinations">
+        <table>
+            <thead>
+                <tr>
+                    <th>Позиции</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let combination of b">
+                    <td>{{ combination }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </table>
+</div>
+<app-bottom></app-bottom>

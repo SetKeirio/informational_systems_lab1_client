@@ -1,0 +1,107 @@
+<app-top></app-top>
+
+<div class="hero-builds-container">
+  <!-- Название героя -->
+  <h1 class="hero-name">{{ heroName }}</h1>
+
+  <!-- Кнопки для выбора роли -->
+  <div class="role-buttons">
+    <button *ngFor="let role of roles" (click)="onRoleChange(role)" class="role-button">
+      {{ role }}
+    </button>
+  </div>
+
+  <!-- Таблицы с предметами -->
+  <div *ngIf="selectedRole">
+    <h2 class="selected-role-title">{{ selectedRole }} Роль: Предметы</h2>
+
+    <!-- Контейнер для таблиц -->
+    <div class="tables-container">
+      <!-- Таблица для старта -->
+      <div class="table-wrapper">
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th>Название предмета</th>
+              <th>Количество</th>
+              <th>Процент покупок (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of heroItems.startItems">
+              <td>{{ item.itemName }}</td>
+              <td>{{ item.count }}</td>
+              <td>{{ item.pickRate | percent }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Таблица для старта игры</p>
+      </div>
+
+      <!-- Таблица для ранней игры -->
+      <div class="table-wrapper">
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th>Название предмета</th>
+              <th>Количество</th>
+              <th>Процент покупок (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of heroItems.earlyGameItems">
+              <td>{{ item.itemName }}</td>
+              <td>{{ item.count }}</td>
+              <td>{{ item.pickRate | percent }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Таблица для ранней игры</p>
+      </div>
+
+      <!-- Таблица для мид-гейма -->
+      <div class="table-wrapper">
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th>Название предмета</th>
+              <th>Количество</th>
+              <th>Процент покупок (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of heroItems.midGameItems">
+              <td>{{ item.itemName }}</td>
+              <td>{{ item.count }}</td>
+              <td>{{ item.pickRate | percent }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Таблица для мид-гейма</p>
+      </div>
+
+      <!-- Таблица для лейт-гейма -->
+      <div class="table-wrapper">
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th>Название предмета</th>
+              <th>Количество</th>
+              <th>Процент покупок (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of heroItems.lateGameItems">
+              <td>{{ item.itemName }}</td>
+              <td>{{ item.count }}</td>
+              <td>{{ item.pickRate | percent }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Таблица для лейт-гейма</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-bottom></app-bottom>

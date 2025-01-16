@@ -1,0 +1,45 @@
+<app-top></app-top>
+
+<div class="space-marine-container">
+  <!-- Фильтры для позиции и патча -->
+  <div class="filters">
+    <label for="position-filter">Выберите позицию:</label>
+    <select id="position-filter" [(ngModel)]="selectedPosition" (change)="filterTable()">
+        <option value="">Все</option>
+        <option *ngFor="let position of positions" [value]="position.value">{{ position.name }}</option>
+    </select>
+
+    <label for="patch-filter">Выберите патч:</label>
+    <select id="patch-filter" [(ngModel)]="selectedPatch" (change)="filterTable()">
+      <option value="">Все</option>
+      <option *ngFor="let patch of patches" [value]="patch">{{ patch }}</option>
+    </select>
+  </div>
+
+  <!-- Таблица с героями, позициями и статистиками -->
+  <table class="heroes-statistics">
+    <thead>
+      <tr>
+        <th>Герой</th>
+        <th>Позиция</th>
+        <th>Количество игр</th>
+        <th>Винрейт</th>
+        <th>Патч</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hero of filteredHeroes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+        <td><a [routerLink]="['/builds', hero.heroName]" class="character-link">{{ hero.heroName }}</a></td>
+        <td>{{ hero.position }}</td>
+        <td>{{ hero.matches }}</td>
+        <td>{{ hero.winrate * 100 }}%</td>
+        <td>{{ hero.patch }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Пагинация -->
+  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
+
+<app-bottom></app-bottom>

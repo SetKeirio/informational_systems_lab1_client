@@ -10,5 +10,6 @@ export class Data {
   public http = "http://"
   public host = "localhost:"
   public port = "8080";
+  public dota = "727";
 
 }

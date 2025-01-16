@@ -1,0 +1,31 @@
+footer {
+    background-color: #6a0dad; /* Фоновый цвет */
+    color: #f0e7ff; /* Цвет текста */
+    padding: 10px; /* Отступы */
+    position: fixed; /* Закрепляем внизу страницы */
+    bottom: 0; /* Прижимаем к низу */
+    left: 0;
+    right: 0;
+    font-size: 0.9em; /* Размер шрифта */
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between; /* Распределение между блоками */
+    align-items: center; /* Вертикальное центрирование */
+  }
+  
+  .footer-info {
+    display: flex;
+    gap: 30px; /* Отступ между блоками информации */
+  }
+  
+  .student-info {
+    display: flex;
+    flex-direction: column; /* Размещаем имя и номер группы друг под другом */
+    gap: 5px; /* Отступ между элементами */
+  }
+  
+  .footer-image {
+    max-width: 50px; /* Максимальная ширина изображения */
+  }

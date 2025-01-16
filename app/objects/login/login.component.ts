@@ -28,7 +28,7 @@ export class LoginComponent {
         const userId = response.userId;
         this.storageService.updateUser(this.username, userId);
         // Перенаправление на главную страницу после успешного входа
-        this.router.navigate(['/main']);
+        this.router.navigate(['/characters']);
       },
       error: (error: HttpErrorResponse) => {
         console.error('Ошибка входа:', error);

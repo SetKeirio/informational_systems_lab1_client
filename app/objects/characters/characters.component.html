@@ -1,0 +1,39 @@
+<app-top></app-top>
+<div class="hero-list-container">
+    <h2>Список героев</h2>
+  
+    <!-- Фильтры для выбора роли -->
+    <div class="filters">
+      <label for="role-filter">Выберите роль:</label>
+      <select id="role-filter" (change)="onRoleFilterChange($event)">
+        <option value="">Все</option>
+        <option value="Carry">Carry</option>
+        <option value="Middle">Middle</option>
+        <option value="Offlane">Offlane</option>
+        <option value="Semi Support">Semi Support</option>
+        <option value="Full Support">Full Support</option>
+      </select>
+    </div>
+  
+    <!-- Таблица с данными -->
+    <table>
+      <thead>
+        <tr>
+          <th>Герой</th>
+          <th>Количество игр</th>
+          <th>Винрейт</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hero of filteredHeroes">
+          <td>{{ hero.name }}</td>
+          <td>{{ hero.name }}</td>
+          <td>{{ hero.skill1 }}%</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Страница с пагинацией -->
+    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+  </div>
+<app-bottom></app-bottom>

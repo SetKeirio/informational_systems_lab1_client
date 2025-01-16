@@ -15,12 +15,19 @@ import { AstartesCategory } from '../entities/AstartesCategory';
 import { Data } from './data';
 import { FileService } from './file.algorithm';
 import { Import } from '../entities/Import';
+import { Hero } from '../entities/Hero';
+import { CharacterName } from '../entities/CharacterName';
+import { CharacterWinRate } from '../entities/CharacterWinRate';
+import { Item } from '../entities/Item';
+import { Pick } from '../entities/Pick';
+import { Combination } from '../entities/Combination';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
   private serverUrl = this.data.http + this.data.host + this.data.port;
+  private dotaUrl = this.data.http + this.data.host + this.data.dota;
   private url = this.serverUrl + '/spacemarines'; // ваш API
   private userUrl = this.serverUrl + '/users';
   private adminUrl = this.serverUrl + '/adminapprovals';
@@ -29,6 +36,9 @@ export class DatabaseService {
   private categoryUrl = this.serverUrl + '/astartescategory';
   private chapterUrl = this.serverUrl + '/chapters'; // API для chapters
   private coordinatesUrl = this.serverUrl + '/coordinates'; // API для chapters
+  private heroesUrl = this.dotaUrl + '/heroes'; // API для chapters
+  private characterWinratesUrl = this.dotaUrl + '/herowinrates';
+  private itemsUrl = this.dotaUrl + '/itemusage';
 
   constructor(private http: HttpClient, private data: Data) {}
 
@@ -38,6 +48,30 @@ export class DatabaseService {
       'Authorization': `Bearer ${token}`
     });
     return headers;
+  }
+
+  predictStatistics(pick: Pick): Observable<String[]> {
+    return this.http.post<String[]>(`${this.characterWinratesUrl}/predict`, pick);
+  }
+
+  calculatePositions(pick: Pick, team: number): Observable<String[][]> {
+    return this.http.post<String[][]>(`${this.characterWinratesUrl}/position/${team}`, pick);
+  }
+
+  getHeroes(): Observable<Hero[]> {
+    return this.http.get<Hero[]>(`${this.heroesUrl}`); // Пример API для получения типов оружия
+  }
+
+  getHeroNames(): Observable<CharacterName[]> {
+    return this.http.get<CharacterName[]>(`${this.heroesUrl}/names`);
+  }
+
+  getCharacterWinRates(): Observable<CharacterWinRate[]> {
+    return this.http.get<CharacterWinRate[]>(this.characterWinratesUrl);  // Запрос для получения всех винрейтов героев
+  }
+
+  getHeroItems(characterName: String, position: number): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.itemsUrl}/items/${characterName}/${position}`);  // Запрос для получения предметов героя
   }
 
   getSpaceMarines(page: number, size: number): Observable<SpaceMarine[]> {
